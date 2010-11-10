@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+ NSubversion (C) 2010 Krzysztof Arkadiusz Prusik
+ SVN, CVS tags in Your application, by the reflection SvnIdAttribute
+ Latest version: http://NSubversion.codeplex.com/
+
+ $Id: MSBuild.proj 4351 2010-11-09 22:38:58Z unknown $
+
+ This library is free software; you can redistribute it and/or
+ modify it under the terms of the GNU Lesser General Public
+ License as published by the Free Software Foundation; either
+ version 2.1 of the License, or (at your option) any later version.
+
+ This library is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ Lesser General Public License for more details.
+
+-->
+<!--
+ Required:
+ 1. MSBuild Community Tasks - http://msbuildtasks.tigris.org/
+ 2. c:\program Files\subversion\bin\svninfo.exe - for example from VisualSVN
+ 3. Environment variable NUnitRoot = C:\Program Files\Nunit 2.5.8\bin\net-2.0
+ Please build after SVN Commit 
+-->
+<Project ToolsVersion="2.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\MSBuildCommunityTasks\MSBuild.Community.Tasks.Targets"/>
+
+  <PropertyGroup>
+    <Major>1</Major>
+    <Minor>2</Minor>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <SourceFiles Include="NSubversion\**\*.cs" />
+    <ExampleSourceFiles Include="NSubversion.Example\**\*.cs" />
+    <ExampleResourceFiles Include="NSubversion.Example\**\*.resx" />
+    <ExampleOutResourceFiles Include="NSubversion.Example\**\*.resources" />
+    <NUnitSourceFiles Include="NSubversion.Tests\**\*.cs" />
+    <TargetFiles Include="Bin\*.pdb;Bin\*.dll;Bin\*.exe;Bin\*.xml;Bin\*.chm" Exclude="Bin\*.Tests.*"/>
+    <AssemblyInfoFiles Include="**\Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+
+  <Target Name="Version">
+    <Version BuildType="Automatic" StartDate="2010-01-01" >
+      <Output TaskParameter="Build" PropertyName="Build" />
+    </Version>
+    <SvnVersion LocalPath=".">
+      <Output TaskParameter="Revision" PropertyName="Revision" />
+    </SvnVersion>
+    <Message Text="Version: $(Major).$(Minor).$(Build).$(Revision)"/>
+    <FileUpdate
+      Files="@(AssemblyInfoFiles)"
+      Regex="(\d+)\.(\d+)\.(\d+)\.(\d+)"
+      ReplacementText="$(Major).$(Minor).$(Build).$(Revision)" />
+  </Target>
+
+  <Target Name="Compile" DependsOnTargets="Version">
+    <MakeDir 
+      Directories="Bin" 
+      ContinueOnError="true" />
+    <Csc
+      Sources="@(SourceFiles)"
+      Platform="AnyCPU"
+      TargetType="Library"
+      OutputAssembly="Bin\NSubversion.dll"
+      DocumentationFile="Bin\NSubversion.xml"
+      DebugType="pdbonly"
+      Optimize="true"
+      WarningLevel="4"/>
+    <GenerateResource
+      Sources="@(ExampleResourceFiles)" />
+    <Csc
+      Sources="@(ExampleSourceFiles)"
+      Platform="AnyCPU"
+      AdditionalLibPaths="Bin"
+      References="NSubversion.dll"
+      TargetType="winexe"
+      OutputAssembly="Bin\NSubversion.Example.exe"
+      Resources="@(ExampleOutResourceFiles)"
+      DebugType="pdbonly"
+      Optimize="true"
+      WarningLevel="4"/>
+    <Copy
+      SourceFiles="$(NUnitRoot)\framework\nunit.framework.dll"
+      DestinationFolder="Bin" />
+    <Csc
+      Sources="@(NUnitSourceFiles)"
+      Platform="AnyCPU"
+      TargetType="Library"
+      AdditionalLibPaths="Bin"
+      References="NSubversion.dll; nunit.framework.dll"
+      OutputAssembly="Bin\NSubversion.Tests.dll"
+      DebugType="pdbonly"
+      Optimize="true"
+      WarningLevel="4"/>
+  </Target>
+
+  <Target Name="Tests" DependsOnTargets="Compile">
+    <NUnit
+      Assemblies="Bin\NSubversion.Tests.dll"
+      ToolPath="$(NUnitRoot)"/>
+    <Delete
+      Files="Bin\nunit.framework.dll; Bin\NSubversion.Tests.dll; Bin\NSubversion.Tests.pdb" />
+    <Exec 
+      Command='"$(ProgramFiles)\MoMA\MoMA.exe" -nogui -out Bin\MoMA.html Bin\NSubversion.dll Bin\NSubversion.Example.exe'/>
+    <Delete
+      Files="Bin\Media\*.*" />
+    <RemoveDir
+      Directories="Bin\Media" />
+  </Target>
+
+  <Target Name="Documentation" DependsOnTargets="Tests">
+    <FileUpdate
+      Files="Sandcastle.shfbproj"
+      Regex="&lt;HelpTitle>.*&lt;/HelpTitle>"
+      ReplacementText="&lt;HelpTitle>NSubversion $(Major).$(Minor)&lt;/HelpTitle>" />
+    <FileUpdate
+      Files="Sandcastle.shfbproj"
+      Regex="&lt;ProductTitle>.*&lt;/ProductTitle>"
+      ReplacementText="&lt;ProductTitle>NSubversion $(Major).$(Minor)&lt;/ProductTitle>" />
+    <Exec 
+      Command="$(SystemRoot)\Microsoft.NET\Framework\v3.5\MSBuild.exe Sandcastle.shfbproj"/>
+  </Target>
+
+  <Target Name="Build" DependsOnTargets="Documentation">
+    <Zip
+      Files="@(TargetFiles)"
+      WorkingDirectory="Bin"
+      ZipFileName="Bin\NSubversion-$(Major).$(Minor).$(Build).$(Revision).zip"/>
+    <FileUpdate
+      Files="@(AssemblyInfoFiles)"
+      Regex="(\d+)\.(\d+)\.(\d+)\.(\d+)"
+      ReplacementText="$(Major).$(Minor).0.0" />
+  </Target>
+</Project>
