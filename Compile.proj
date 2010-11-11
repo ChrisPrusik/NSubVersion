@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="2.0" DefaultTargets="Compile" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <ItemGroup>
+    <SourceFiles Include="NSubversion\**\*.cs" />
+    <ExampleSourceFiles Include="NSubversion.Example\**\*.cs" />
+    <ExampleResourceFiles Include="NSubversion.Example\**\*.resx" />
+    <ExampleOutResourceFiles Include="NSubversion.Example\**\*.resources" />
+    <NUnitSourceFiles Include="NSubversion.Tests\**\*.cs" />
+  </ItemGroup>
+
+  <Target Name="Compile">
+    <MakeDir
+      Directories="Bin"
+      ContinueOnError="true" />
+    <Csc
+      Sources="@(SourceFiles)"
+      Platform="AnyCPU"
+      TargetType="Library"
+      OutputAssembly="Bin\NSubversion.dll"
+      DocumentationFile="Bin\NSubversion.xml"
+      DebugType="pdbonly"
+      Optimize="true"
+      WarningLevel="4"/>
+    <GenerateResource
+      Sources="@(ExampleResourceFiles)" />
+    <Csc
+      Sources="@(ExampleSourceFiles)"
+      Platform="AnyCPU"
+      AdditionalLibPaths="Bin"
+      References="NSubversion.dll"
+      TargetType="winexe"
+      OutputAssembly="Bin\NSubversion.Example.exe"
+      Resources="@(ExampleOutResourceFiles)"
+      DebugType="pdbonly"
+      Optimize="true"
+      WarningLevel="4"/>
+    <Copy
+      SourceFiles="$(NUnitRoot)\framework\nunit.framework.dll"
+      DestinationFolder="Bin" />
+    <Csc
+      Sources="@(NUnitSourceFiles)"
+      Platform="AnyCPU"
+      TargetType="Library"
+      AdditionalLibPaths="Bin"
+      References="NSubversion.dll; nunit.framework.dll"
+      OutputAssembly="Bin\NSubversion.Tests.dll"
+      DebugType="pdbonly"
+      Optimize="true"
+      WarningLevel="4"/>
+  </Target>
+
+</Project>
