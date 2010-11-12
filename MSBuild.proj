@@ -83,8 +83,11 @@
       Files="Sandcastle.shfbproj"
       Regex="&lt;ProductTitle>.*&lt;/ProductTitle>"
       ReplacementText="&lt;ProductTitle>NSubversion $(Major).$(Minor)&lt;/ProductTitle>" />
+    <MSBuild Targets="Sandcastle.shfbproj" ToolsVersion="3.5"/>
+    <!--
     <Exec 
       Command="$(SystemRoot)\Microsoft.NET\Framework\v3.5\MSBuild.exe Sandcastle.shfbproj"/>
+    -->
   </Target>
 
   <Target Name="Build" DependsOnTargets="Documentation">
