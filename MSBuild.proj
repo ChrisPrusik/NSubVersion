@@ -44,9 +44,9 @@
     <Version BuildType="Automatic" StartDate="2010-01-01" >
       <Output TaskParameter="Build" PropertyName="Build" />
     </Version>
-    <!--HgVersion LocalPath=".">
+    <HgVersion>
       <Output TaskParameter="Revision" PropertyName="Revision" />
-    </HgVersion-->
+    </HgVersion>
     <Message 
       Text="Version: $(Major).$(Minor).$(Build).$(Revision)" />
     <FileUpdate
