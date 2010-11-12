@@ -44,7 +44,7 @@
     <Version BuildType="Automatic" StartDate="2010-01-01" >
       <Output TaskParameter="Build" PropertyName="Build" />
     </Version>
-    <HgVersion>
+    <HgVersion LocalPath=".">
       <Output TaskParameter="Revision" PropertyName="Revision" />
     </HgVersion>
     <Message 
