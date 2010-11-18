@@ -6,7 +6,7 @@
   SVN, CVS tags in Your application, by the reflection SvnIdAttribute
   Latest version: http://NSubversion.codeplex.com/
 
-  $Id: Sandcastle.shfbproj 4268 2010-11-07 20:57:17Z unknown $
+  $Id$
 
   This library is free software; you can redistribute it and/or
   modify it under the terms of the GNU Lesser General Public

@@ -4,7 +4,7 @@
   SVN, CVS tags in Your application, by the reflection SvnIdAttribute
   Latest version: http://NSubversion.codeplex.com/
 
-  $Id: SvnRepositoryTest.cs 4257 2010-11-07 15:42:52Z unknown $
+  $Id$
 
   This library is free software; you can redistribute it and/or
   modify it under the terms of the GNU Lesser General Public

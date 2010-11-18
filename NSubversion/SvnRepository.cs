@@ -4,7 +4,7 @@
   SVN, CVS tags in Your application, by the reflection SvnIdAttribute
   Latest version: http://NSubversion.codeplex.com/
 
-  $Id: SvnRepository.cs 3216 2010-10-03 05:24:27Z unknown $
+  $Id$
 
   This library is free software; you can redistribute it and/or
   modify it under the terms of the GNU Lesser General Public
@@ -28,7 +28,7 @@ namespace NSubversion
     /// <summary>
     /// Central, static repository of all SvnTag items in project
     /// </summary>
-    [SvnId("$Id: SvnRepository.cs 3216 2010-10-03 05:24:27Z unknown $")]
+    [SvnId("$Id$")]
     public static class SvnRepository
     {
         private static List<SvnTag> items = new List<SvnTag>();

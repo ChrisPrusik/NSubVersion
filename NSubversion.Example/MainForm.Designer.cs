@@ -4,7 +4,7 @@
   SVN, CVS tags in Your application, by the reflection SvnIdAttribute
   Latest version: http://NSubversion.codeplex.com/
 
-  $Id: MainForm.Designer.cs 3181 2010-09-30 22:55:22Z unknown $
+  $Id$
 
   This library is free software; you can redistribute it and/or
   modify it under the terms of the GNU Lesser General Public
@@ -19,7 +19,7 @@
 *******************************************************************************/
 namespace NSubversion.Example
 {
-    [SvnId("$Id: MainForm.Designer.cs 3181 2010-09-30 22:55:22Z unknown $")]
+    [SvnId("$Id$")]
     partial class MainForm
     {
         /// <summary>

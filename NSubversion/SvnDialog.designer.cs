@@ -1,6 +1,6 @@
 ﻿namespace NSubversion
 {
-    [SvnId("$Id: SvnDialog.designer.cs 3180 2010-09-30 22:36:30Z unknown $")]
+    [SvnId("$Id$")]
     partial class SvnDialog
     {
         /// <summary>

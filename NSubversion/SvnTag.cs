@@ -4,7 +4,7 @@
   SVN, CVS tags in Your application, by the reflection SvnIdAttribute
   Latest version: http://NSubversion.codeplex.com/
 
-  $Id: SvnTag.cs 3216 2010-10-03 05:24:27Z unknown $
+  $Id$
 
   This library is free software; you can redistribute it and/or
   modify it under the terms of the GNU Lesser General Public
@@ -28,7 +28,7 @@ namespace NSubversion
     /// Information about Svn Id tag and connected type with assembly
     /// </summary>
     /// <seealso cref="SvnIdAttribute"/>
-    [SvnId("$Id: SvnTag.cs 3216 2010-10-03 05:24:27Z unknown $")]
+    [SvnId("$Id$")]
     public class SvnTag
     {
         private string id = "";
@@ -36,7 +36,7 @@ namespace NSubversion
         /// Gets the full id tag.
         /// </summary>
         /// <example>
-        /// <code>$Id: SvnTag.cs 3216 2010-10-03 05:24:27Z unknown $</code>
+        /// <code>$Id$</code>
         /// </example>
         /// <value>The id.</value>
         public string Id 
@@ -56,7 +56,7 @@ namespace NSubversion
         /// Gets the name of the file from id tag.
         /// </summary>
         /// <example>
-        /// <code>SvnTag.cs /* from $Id: SvnTag.cs 3216 2010-10-03 05:24:27Z unknown $ */</code>
+        /// <code>SvnTag.cs /* from $Id$ */</code>
         /// </example>
         /// <value>The name of the file.</value>
         public string FileName 
@@ -78,7 +78,7 @@ namespace NSubversion
         /// Gets the version number from id tag.
         /// </summary>
         /// <example>
-        /// <code>49182 /* from $Id: SvnTag.cs 3216 2010-10-03 05:24:27Z unknown $ */</code>
+        /// <code>49182 /* from $Id$ */</code>
         /// </example>
         /// <value>The version number.</value>
         public int VersionNumber
@@ -100,7 +100,7 @@ namespace NSubversion
         /// Gets the last modified from id tag.
         /// </summary>
         /// <example>
-        /// <code>2010-07-21 17:11:44Z /* from $Id: SvnTag.cs 3216 2010-10-03 05:24:27Z unknown $ */</code>
+        /// <code>2010-07-21 17:11:44Z /* from $Id$ */</code>
         /// </example>
         /// <value>The last modified.</value>
         public DateTime LastModified
@@ -123,7 +123,7 @@ namespace NSubversion
         /// Gets the author from id tag.
         /// </summary>
         /// <example>
-        /// <code>unknown /* from $Id: SvnTag.cs 3216 2010-10-03 05:24:27Z unknown $ */</code>
+        /// <code>unknown /* from $Id$ */</code>
         /// </example>
         /// <value>The author.</value>
         public string Author
@@ -310,7 +310,7 @@ namespace NSubversion
         /// </summary>
         /// <example>
         /// <code>
-        /// var tag = new SvnTag("$Id: SvnTag.cs 3216 2010-10-03 05:24:27Z unknown $");
+        /// var tag = new SvnTag("$Id$");
         /// </code>
         /// </example>
         /// <param name="text">The Svn Id tag.</param>
@@ -325,7 +325,7 @@ namespace NSubversion
         /// <example>
         /// <code>
         /// var tag = new SvnTag(
-        ///     "$Id: SvnTag.cs 3216 2010-10-03 05:24:27Z unknown $",
+        ///     "$Id$",
         ///     "PKSoft.SubVersion, Version=1.0.3846.14773, Culture=neutral, PublicKeyToken=null");
         /// </code>
         /// </example>

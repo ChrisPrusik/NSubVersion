@@ -4,7 +4,7 @@
   SVN, CVS tags in Your application, by the reflection SvnIdAttribute
   Latest version: http://NSubversion.codeplex.com/
 
-  $Id: SvnDialog.cs 3180 2010-09-30 22:36:30Z unknown $
+  $Id$
 
   This library is free software; you can redistribute it and/or
   modify it under the terms of the GNU Lesser General Public
@@ -28,7 +28,7 @@ namespace NSubversion
     /// <summary>
     /// Dialog with information about all Svn tags in your project
     /// </summary>
-    [SvnId("$Id: SvnDialog.cs 3180 2010-09-30 22:36:30Z unknown $")]
+    [SvnId("$Id$")]
     public partial class SvnDialog : Component
     {
         /// <summary>
