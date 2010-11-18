@@ -5,8 +5,7 @@
  SVN, CVS tags in Your application, by the reflection SvnIdAttribute
  Latest version: http://NSubversion.codeplex.com/
 
- Test
- $Id: MSBuild.proj,v ee4a28f768e6 2010/11/18 16:57:05 kap $
+ $Id$
 
  This library is free software; you can redistribute it and/or
  modify it under the terms of the GNU Lesser General Public
