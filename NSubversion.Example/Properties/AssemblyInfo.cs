@@ -4,7 +4,7 @@
   SVN, CVS tags in Your application, by the reflection SvnIdAttribute
   Latest version: http://NSubversion.codeplex.com/
 
-  $Id: AssemblyInfo.cs 4293 2010-11-08 17:17:58Z unknown $
+  $Id$
 
   This library is free software; you can redistribute it and/or
   modify it under the terms of the GNU Lesser General Public
@@ -50,5 +50,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.2.316.5")]
-[assembly: AssemblyFileVersion("1.2.316.5")]
+[assembly: AssemblyVersion("1.2.0.0")]
+[assembly: AssemblyFileVersion("1.2.0.0")]
